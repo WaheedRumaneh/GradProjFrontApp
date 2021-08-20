@@ -1,0 +1,246 @@
+{
+  "Users": [
+    {
+      "id": 1,
+      "username": "abdalla",
+      "email": "abdalla@email.com",
+      "password": "testpass1",
+      "image": {
+        "_parts": [
+          [
+            "profileImage",
+            {
+              "cropRect": {
+                "y": 669,
+                "height": 611,
+                "width": 458,
+                "x": 0
+              },
+              "modificationDate": "1619384332000",
+              "width": 300,
+              "size": 60581,
+              "mime": "image/jpeg",
+              "height": 400,
+              "path": "file:///storage/emulated/0/Android/data/com.gradprojfrontapp/files/Pictures/472269e2-c224-4481-a7ea-07b70375f03a.jpg"
+            }
+          ],
+          [
+            "name",
+            "profile"
+          ]
+        ]
+      }
+    },
+    {
+      "username": "abd rob",
+      "email": "abd@email.com",
+      "password": "testpass2",
+      "id": 2,
+      "Gender": "Male",
+      "image": {
+        "_parts": [
+          [
+            "profileImage",
+            {
+              "cropRect": {
+                "y": 0,
+                "height": 1280,
+                "width": 960,
+                "x": 0
+              },
+              "modificationDate": "1621336599000",
+              "width": 300,
+              "size": 63482,
+              "mime": "image/jpeg",
+              "height": 400,
+              "path": "file:///storage/emulated/0/Android/data/com.gradprojfrontapp/files/Pictures/f9cb8a05-f326-4e33-9ca6-e1eb20cec6e9.jpg"
+            }
+          ],
+          [
+            "name",
+            "profile"
+          ]
+        ]
+      },
+      "dateOfBirth": "2000-02-02T04:30:53.580Z"
+    },
+    {
+      "username": "testname",
+      "email": "test@email.com",
+      "password": "testpass3",
+      "id": 3
+    },
+    {
+      "username": "najm",
+      "email": "najm@email.com",
+      "password": "testpass",
+      "id": 4,
+      "image": {
+        "_parts": [
+          [
+            "profileImage",
+            {
+              "cropRect": {
+                "y": 0,
+                "height": 1280,
+                "width": 959,
+                "x": 0
+              },
+              "modificationDate": "1621182935000",
+              "width": 300,
+              "size": 70992,
+              "mime": "image/jpeg",
+              "height": 400,
+              "path": "file:///storage/emulated/0/Android/data/com.gradprojfrontapp/files/Pictures/4e7be8bb-1061-4453-83be-7190fe3ebfad.jpg"
+            }
+          ],
+          [
+            "name",
+            "profile"
+          ]
+        ]
+      }
+    },
+    {
+      "username": "ibr",
+      "email": "ibr@email.com",
+      "password": "testpass",
+      "id": 5
+    }
+  ],
+  "Gyms": [
+    {
+      "username": "Gym1",
+      "email": "gym1@email.com",
+      "password": "testgym1",
+      "id": 1,
+      "location": {
+        "longitude": -122.07800441884184,
+        "latitude": 37.41888223255919
+      },
+      "image": {
+        "_parts": [
+          [
+            "profileImage",
+            {
+              "cropRect": {
+                "y": 0,
+                "height": 1280,
+                "width": 959,
+                "x": 0
+              },
+              "modificationDate": "1621339535000",
+              "width": 300,
+              "size": 32712,
+              "mime": "image/jpeg",
+              "height": 400,
+              "path": "file:///storage/emulated/0/Android/data/com.gradprojfrontapp/files/Pictures/117d3db4-99f9-4b2c-8c0e-21e5ab00cc16.jpg"
+            }
+          ],
+          [
+            "name",
+            "profile"
+          ]
+        ]
+      },
+      "openingTime": "2021-04-29T12:45:53.580Z",
+      "closingTime": "2021-04-29T06:15:53.580Z",
+      "services": {
+        "jacuzzi": true,
+        "steam": false,
+        "sauna": true,
+        "pool": false
+      },
+      "GymImages": {
+        "_parts": [
+          [
+            "GymImage",
+            {
+              "cropRect": {
+                "y": 0,
+                "height": 1280,
+                "width": 960,
+                "x": 0
+              },
+              "modificationDate": "1621347444000",
+              "width": 300,
+              "size": 65538,
+              "mime": "image/jpeg",
+              "height": 400,
+              "path": "file:///storage/emulated/0/Android/data/com.gradprojfrontapp/files/Pictures/dafcf8a6-8bfe-4069-841c-e3bc007782d1.jpg"
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "username": "testname",
+      "email": "test@email.com",
+      "password": "testpass3",
+      "location": {
+        "longitude": -122.07804041884185,
+        "latitude": 37.41888663219919
+      },
+      "id": 3,
+      "image": {
+        "_parts": [
+          [
+            "profileImage",
+            {
+              "cropRect": {
+                "y": 0,
+                "height": 1280,
+                "width": 960,
+                "x": 0
+              },
+              "modificationDate": "1621683257000",
+              "width": 300,
+              "size": 70992,
+              "mime": "image/jpeg",
+              "height": 400,
+              "path": "file:///storage/emulated/0/Android/data/com.gradprojfrontapp/files/Pictures/ea46e59e-043d-49d9-97f3-07fed6aa4fe2.jpg"
+            }
+          ],
+          [
+            "name",
+            "profile"
+          ]
+        ]
+      },
+      "services": {
+        "jacuzzi": true,
+        "steam": true,
+        "sauna": true,
+        "pool": true
+      },
+      "openingTime": "2021-04-29T09:00:53.580Z",
+      "closingTime": "2021-04-28T21:00:53.580Z"
+    },
+    {
+      "username": "Gymm",
+      "email": "Gymm@email.com",
+      "password": "testpass0",
+      "location": {
+        "longitude": -122.078003,
+        "latitude": 37.41888983219919
+      },
+      "id": 4
+    },
+    {
+      "username": "power",
+      "email": "power@email.com",
+      "password": "testpass",
+      "location": {
+        "longitude": -122.07830041884185,
+        "latitude": 37.41418223219919
+      },
+      "id": 5,
+      "services": {
+        "jacuzzi": true,
+        "steam": false,
+        "sauna": true,
+        "pool": false
+      }
+    }
+  ]
+}

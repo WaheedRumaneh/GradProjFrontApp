@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "89430418512",
+    "project_id": "mabuzina98",
+    "storage_bucket": "mabuzina98.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89430418512:android:6dd42bc62d831200f89d55",
+        "android_client_info": {
+          "package_name": "Graduation.js"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "89430418512-r61du808dvm0qm60a8qmt780dntjn5ui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4sayabMpZ0J2ACJ2PNAb_4Id85A_C9Ug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "89430418512-r61du808dvm0qm60a8qmt780dntjn5ui.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89430418512:android:32b0335a998207a3f89d55",
+        "android_client_info": {
+          "package_name": "com.gradprojfrontapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "89430418512-r61du808dvm0qm60a8qmt780dntjn5ui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4sayabMpZ0J2ACJ2PNAb_4Id85A_C9Ug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "89430418512-r61du808dvm0qm60a8qmt780dntjn5ui.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
