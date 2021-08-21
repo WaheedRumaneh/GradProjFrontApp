@@ -47,10 +47,10 @@ const ShowGymScreen = ({ route }) => {
     pool: false,
   });
   const [OpeningTime, setOpeningTime] = useState(
-    new Date('2021-04-29T03:30:53.580Z'),
+    new Date('2021-04-29T03:30:53.580Z').getHours() + ' : ' + new Date('2021-04-29T03:30:53.580Z').getMinutes(),
   );
   const [ClosingTime, setClosingTime] = useState(
-    new Date('2021-04-29T03:30:53.580Z'),
+    new Date('2021-04-29T03:30:53.580Z').getHours() + ' : ' + new Date('2021-04-29T03:30:53.580Z').getMinutes(),
   );
   useEffect(async () => {
     let id = null;
@@ -124,11 +124,11 @@ const ShowGymScreen = ({ route }) => {
               'https://i.pinimg.com/originals/a9/68/4b/a9684b8fd91436f9b33d78d5a68a13eb.jpg',
             );
           }
-          if ('openingTime' in response.data) {
-            setOpeningTime(new Date(response.data.openingTime));
+          if (response.data[0].open_time != '' && response.data[0].open_time != null && response.data[0].open_time != undefined) {
+            setOpeningTime(response.data[0].open_time);
           }
-          if ('closingTime' in response.data) {
-            setClosingTime(new Date(response.data.closingTime));
+          if (response.data[0].close_time != '' && response.data[0].close_time != null && response.data[0].close_time != undefined) {
+            setClosingTime(response.data[0].close_time);
           }
         });
       await AsyncStorage.removeItem('GymId');
@@ -315,7 +315,7 @@ const ShowGymScreen = ({ route }) => {
             <Text style={styles.text_footer}>Opening Time</Text>
             <View style={styles.action}>
               <Text style={styles.text_footer}>
-                {getParsedDate(OpeningTime)}
+                {OpeningTime}
               </Text>
             </View>
           </View>
@@ -324,7 +324,7 @@ const ShowGymScreen = ({ route }) => {
             <Text style={styles.text_footer}>Closing Time</Text>
             <View style={styles.action}>
               <Text style={styles.text_footer}>
-                {getParsedDate(ClosingTime)}
+                {ClosingTime}
               </Text>
             </View>
           </View>
