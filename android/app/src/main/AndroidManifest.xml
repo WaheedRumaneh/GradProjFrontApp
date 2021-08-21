@@ -17,6 +17,7 @@
       android:roundIcon="@mipmap/ic_launcher_round"
       android:allowBackup="false"
       android:usesCleartextTraffic="true"
+      android:requestLegacyExternalStorage="true"
       android:networkSecurityConfig="@xml/network_security_config"
       android:theme="@style/AppTheme">
       <activity
@@ -32,7 +33,7 @@
       </activity>
       <meta-data
      android:name="com.google.android.geo.API_KEY"
-     android:value="AIzaSyBa4HTzhCaqsgREnWNeaz5CCTGEJVPZj64"/>
-     <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+     android:value="AIzaSyB4sayabMpZ0J2ACJ2PNAb_4Id85A_C9Ug"/>
+     <!-- <uses-library android:name="org.apache.http.legacy" android:required="false"/> -->
     </application>
 </manifest>

@@ -1,16 +1,26 @@
-import React, {useState, useEffect} from 'react';
-import {TouchableOpacity, View, Text, StyleSheet} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-const TimePicker = ({text, id}) => {
+var date = new Date('2021-04-29T03:30:53.580Z');
+var Hours = date.getHours();
+var Minutes = date.getMinutes();
+if (Hours < 10) {
+  Hours = '0' + Hours.toString();
+}
+if (Minutes < 10) {
+  Minutes = '0' + Minutes.toString();
+}
+var defaultDate = Hours + ' : ' + Minutes;
+const TimePicker = ({ text, id }) => {
   const [dataa, setDataa] = useState({
     check: 'found',
     id,
   });
   const [ViewDatePicker, setViewDatePicker] = useState(false);
-  const [Time, setTime] = useState(new Date('2021-04-29T03:30:53.580Z'));
+  const [Time, setTime] = useState(defaultDate);
 
   useEffect(async () => {
     let id = null;
@@ -22,13 +32,13 @@ const TimePicker = ({text, id}) => {
       .then(response => {
         if (response.data[0].open_time != null) {
           if (text == 'Opening time') {
-            setTime(new Date(eval(response.data[0].open_time)));
+            setTime(response.data[0].open_time);
             setDataa({
               ...dataa,
               id: id,
             });
           } else if (response.data[0].close_time != null) {
-            setTime(new Date(eval(response.data[0].close_time)));
+            setTime(response.data[0].close_time);
             setDataa({
               ...dataa,
               id: id,
@@ -46,13 +56,21 @@ const TimePicker = ({text, id}) => {
   }, []);
 
   function getParsedDate(date) {
-    date = String(date).split(' ')[4].split(':');
-    let edetedDate = date[0] + ' : ' + date[1];
-    return edetedDate;
+    date = String(date);
+    return date;
   }
 
-  const changedDate = (event, selectedDate) => {
-    const currentDate = selectedDate;
+  const changedDate = (selectedDate) => {
+    let Hours = selectedDate.getHours();
+    let Minutes = selectedDate.getMinutes();
+    if (Hours < 10) {
+      Hours = '0' + Hours.toString();
+    }
+    if (Minutes < 10) {
+      Minutes = '0' + Minutes.toString();
+    }
+    const currentDate = Hours + ':' + Minutes;
+    console.log(currentDate);
     if (currentDate != undefined || currentDate != null) {
       setTime(currentDate);
       setViewDatePicker(!ViewDatePicker);
@@ -68,20 +86,19 @@ const TimePicker = ({text, id}) => {
 
   const sendToServer = async Time => {
     try {
-      let time = JSON.stringify(Time);
-      // console.warn(time);
+      let time = Time;
       {
         text == 'Opening time'
           ? await axios
-              .patch(
-                `http://10.0.2.2:80/graduationProject/index.php?type=edit_opentime&gym_id=\'${dataa.id}\'&open_time=\'${time}\'`,
-              )
-              .catch(e => console.warn(e))
+            .patch(
+              `http://10.0.2.2:80/graduationProject/index.php?type=edit_opentime&gym_id=\'${dataa.id}\'&open_time=\'${time}\'`,
+            )
+            .catch(e => console.warn(e))
           : await axios
-              .patch(
-                `http://10.0.2.2:80/graduationProject/index.php?type=edit_closetime&gym_id=\'${dataa.id}\'&close_time=\'${time}\'`,
-              )
-              .catch(e => console.warn(e));
+            .patch(
+              `http://10.0.2.2:80/graduationProject/index.php?type=edit_closetime&gym_id=\'${dataa.id}\'&close_time=\'${time}\'`,
+            )
+            .catch(e => console.warn(e));
       }
     } catch (e) {
       console.warn(e);
@@ -90,7 +107,7 @@ const TimePicker = ({text, id}) => {
 
   return (
     <>
-      <View style={{paddingRight: 20}}>
+      <View style={{ paddingRight: 20 }}>
         <Text style={styles.text_footer}>{text}</Text>
         <TouchableOpacity style={styles.action} onPress={() => onPressedDate()}>
           {text == 'Opening time' ? (
@@ -100,15 +117,18 @@ const TimePicker = ({text, id}) => {
           )}
         </TouchableOpacity>
       </View>
-
-      {ViewDatePicker && (
-        <DateTimePicker
-          value={Time}
-          mode={'time'}
-          locale={'en'}
-          onChange={changedDate}
-        />
-      )}
+      <DateTimePickerModal
+        mode="time"
+        display="clock"
+        value={Time}
+        iconSource={null}
+        isVisible={ViewDatePicker}
+        onConfirm={(date) => changedDate(date)}
+        onCancel={() => onPressedDate}
+        confirmBtnText="Confirm"
+        cancelBtnText="Cancel"
+        is24Hour={false}
+      />
     </>
   );
 };

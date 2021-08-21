@@ -92,7 +92,7 @@ const Location = ({ getGymsOnLocation }) => {
   };
 
   const getAdress = async (lat, lng) => {
-    await Geocoder.fallbackToGoogle('AIzaSyBa4HTzhCaqsgREnWNeaz5CCTGEJVPZj64');
+    await Geocoder.fallbackToGoogle('AIzaSyB4sayabMpZ0J2ACJ2PNAb_4Id85A_C9Ug');
     let res = await geocoder.geocodePosition({ lat, lng });
     let address = res[0].formattedAddress;
     setData({

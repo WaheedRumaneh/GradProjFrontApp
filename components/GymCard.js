@@ -55,7 +55,7 @@ const GymCard = ({ id, navigation }) => {
     //console.warn(userData);
     try {
       await Geocoder.fallbackToGoogle(
-        'AIzaSyBa4HTzhCaqsgREnWNeaz5CCTGEJVPZj64',
+        'AIzaSyB4sayabMpZ0J2ACJ2PNAb_4Id85A_C9Ug',
       );
       let res = await geocoder.geocodePosition({ lat, lng });
       let address = res[0].formattedAddress;

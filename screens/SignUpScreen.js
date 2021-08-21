@@ -9,14 +9,15 @@ import {
   Modal,
   Platform,
   Alert,
-  ScrollView
+  ScrollView,
+  PermissionsAndroid
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import { AuthContext } from '../components/context';
 import axios from 'axios';
-import MapView, { Callout, Marker } from 'react-native-maps';
+import MapView, { Callout, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
 import { request, PERMISSIONS } from 'react-native-permissions';
 import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
@@ -200,48 +201,33 @@ const SignUpScreen = () => {
   };
 
   const requestLocationPermision = () => {
-    RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({
-      interval: 10000,
-      fastInterval: 5000,
-    })
-      .then(async data => {
-        let response;
-        if (Platform.OS === 'android') {
-          response = await request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION);
-          if (response === 'granted') {
-            setViewMapModal(true);
-            getPosition();
-          } else {
-            setViewMapModal(true);
-          }
-        }
-      })
-      .catch(err => {
-        // The user has not accepted to enable the location services or something went wrong during the process
-        // "err" : { "code" : "ERR00|ERR01|ERR02|ERR03", "message" : "message"}
-        // codes :
-        //  - ERR00 : The user has clicked on Cancel button in the popup
-        //  - ERR01 : If the Settings change are unavailable
-        //  - ERR02 : If the popup has failed to open
-        //  - ERR03 : Internal error
-      });
+    if (Platform.OS === 'android') {
+      PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION)
+        .then(granted => {
+          setViewMapModal(true);
+          getPosition();
+        });
+    } else {
+      setViewMapModal(true);
+      getPosition();
+    }
   };
   const getPosition = () => {
     Geolocation.getCurrentPosition(position => {
-      console.warn(JSON.stringify(position));
+      const myPosition = position.coords;
       setData({
         ...userData,
         region: {
           ...userData.region,
-          longitude: position.coords.longitude,
-          latitude: position.coords.latitude,
+          longitude: myPosition.longitude,
+          latitude: myPosition.latitude,
         },
       });
       setViewMapModal(true);
-    }, error => { console.log(error) }, { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 });
+    }, error => { console.log(error) }, { enableHighAccuracy: false, timeout: 900000 });
   };
   const getAdress = async (lat, lng) => {
-    await Geocoder.fallbackToGoogle('AIzaSyBa4HTzhCaqsgREnWNeaz5CCTGEJVPZj64');
+    await Geocoder.fallbackToGoogle('AIzaSyB4sayabMpZ0J2ACJ2PNAb_4Id85A_C9Ug');
     let res = await geocoder.geocodePosition({ lat, lng });
     let address = res[0].formattedAddress;
     setData({
@@ -489,7 +475,9 @@ const SignUpScreen = () => {
                   <MapView
                     initialRegion={userData.region}
                     showsUserLocation={true}
-                    provider={'google'}
+                    provider={PROVIDER_GOOGLE}
+                    mapType={'standard'}
+                    showsMyLocationButton={true}
                     style={{
                       marginBottom: userData.marginBottom,
                       flex: userData.flex,

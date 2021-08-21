@@ -85,7 +85,6 @@ const ShowGymScreen = ({ route }) => {
           `http://10.0.2.2:80/graduationProject/index.php?type=get_gym&gym_id=\'${id}\'&user_id=\'${userId}\'`,
         )
         .then(response => {
-          console.log( `https://www.google.com/maps?q=${parseFloat(response.data[0].lat)},${parseFloat(response.data[0].lng)}`);
           setData({
             ...data,
             rate: response.data[0].rate,
