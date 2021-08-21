@@ -238,7 +238,7 @@ const SignUpScreen = () => {
         },
       });
       setViewMapModal(true);
-    });
+    }, error => { console.log(error) }, { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 });
   };
   const getAdress = async (lat, lng) => {
     await Geocoder.fallbackToGoogle('AIzaSyBa4HTzhCaqsgREnWNeaz5CCTGEJVPZj64');
@@ -261,10 +261,7 @@ const SignUpScreen = () => {
       userData.Email.length == 0 ||
       userData.password.length == 0 ||
       userData.confirmPassword.length == 0 ||
-      userData.userName.length == 0 ||
-      userData.gym_num.toString().length < 9 ||
-      userData.gym_num.toString().length > 14 ||
-      userData.visit_price.toString().length == 0
+      userData.userName.length == 0
     ) {
       Alert.alert('Wrong Input!', 'All fields should be filled correctly.', [
         { text: 'Okay' },
@@ -312,6 +309,11 @@ const SignUpScreen = () => {
                   signUp(response.data[0].gym_id, userData.userType);
                 }
               });
+          } else {
+            Alert.alert('Wrong Input!', 'All fields should be filled correctly.', [
+              { text: 'Okay' },
+            ]);
+            return;
           }
         }
       } catch (e) {
@@ -591,15 +593,15 @@ const SignUpScreen = () => {
                 {userData.secureText ? (
                   <Feather name="eye-off" color="grey" size={20} />
                 ) : (
-                    <Feather name="eye" color="grey" size={20} />
-                  )}
+                  <Feather name="eye" color="grey" size={20} />
+                )}
               </TouchableOpacity>
             </View>
             {userData.isValidPassword ? null : (
               <Animatable.View animation="fadeInLeft" duration={500}>
                 <Text style={styles.errorMsg}>
                   Password must be 8 characters long.
-              </Text>
+                </Text>
               </Animatable.View>
             )}
           </View>
@@ -621,15 +623,15 @@ const SignUpScreen = () => {
                 {userData.secureText2 ? (
                   <Feather name="eye-off" color="grey" size={20} />
                 ) : (
-                    <Feather name="eye" color="grey" size={20} />
-                  )}
+                  <Feather name="eye" color="grey" size={20} />
+                )}
               </TouchableOpacity>
             </View>
             {userData.isValidConfirmPassword ? null : (
               <Animatable.View animation="fadeInLeft" duration={500}>
                 <Text style={styles.errorMsg}>
                   Password must be 8 characters long.
-              </Text>
+                </Text>
               </Animatable.View>
             )}
           </View>
@@ -645,7 +647,7 @@ const SignUpScreen = () => {
                   },
                 ]}>
                 sign up
-            </Text>
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
